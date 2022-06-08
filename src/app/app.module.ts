@@ -7,9 +7,10 @@ import { WeatherComponent } from './weather/weather.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { AppRoutingModule } from './app-routing.module';
+import { HelloComponent } from './hello/hello.component';
 
 @NgModule({
-  declarations: [AppComponent, TimeComponent, WeatherComponent],
+  declarations: [AppComponent, TimeComponent, WeatherComponent, HelloComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

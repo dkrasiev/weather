@@ -24,6 +24,8 @@ export class TimeComponent implements OnInit {
     const minutes = this.currentDate.getMinutes();
     const seconds = this.currentDate.getSeconds();
 
-    this.time = hours + ':' + minutes + ':' + seconds;
+    this.time = `${hours < 10 ? '0' + hours : hours.toString()}:${
+      minutes < 10 ? '0' + minutes : minutes.toString()
+    }:${seconds < 10 ? '0' + seconds : seconds.toString()}`;
   }
 }
