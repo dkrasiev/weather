@@ -5,18 +5,18 @@ import { AppComponent } from './app.component';
 import { TimeComponent } from './time/time.component';
 import { WeatherComponent } from './weather/weather.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TimeComponent,
-    WeatherComponent
-  ],
+  declarations: [AppComponent, TimeComponent, WeatherComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
