@@ -1,10 +1,16 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary"> -->
   
-  <button mat-button >time</button>
-  <button mat-button >weather</button>
+  <mat-tab-group>
+    <mat-tab label="Время">
+      <app-time></app-time>
+    </mat-tab>
+    <mat-tab label="Погода">
+      <app-weather></app-weather>
+    </mat-tab>
+  </mat-tab-group>
 
-</mat-toolbar>
+<!-- </mat-toolbar> -->
 
-<div class="container">
+<!-- <div class="container">
   <router-outlet></router-outlet>
-</div>
+</div> -->
