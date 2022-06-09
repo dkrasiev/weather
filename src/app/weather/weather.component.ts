@@ -34,6 +34,22 @@ export class WeatherComponent implements OnInit {
         next: (v) => {
           this.geoObject =
             v.response.GeoObjectCollection.featureMember[0].GeoObject;
+            
+          // Тест api погоды
+          this.http
+            .get(environment.yandex.weatherApi, {
+              headers: { 'X-Yandex-API-Key': environment.yandex.weatherToken },
+              params: {
+                lat: this.geoObject.Point.pos.split(' ')[0],
+                lon: this.geoObject.Point.pos.split(' ')[1],
+              },
+            })
+            .subscribe({
+              next: (v) => {
+                console.log(v);
+              },
+              error: (e) => console.log(e),
+            });
         },
         error: (e) => {
           console.error(e);
