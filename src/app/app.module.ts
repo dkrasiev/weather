@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HelloComponent } from './hello/hello.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, TimeComponent, WeatherComponent, HelloComponent],
@@ -16,6 +18,8 @@ import { HelloComponent } from './hello/hello.component';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

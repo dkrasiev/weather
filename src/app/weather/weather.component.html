@@ -1,5 +1,16 @@
-<div>
-    <mat-form-field>
-        <input type="text" matInput>
-    </mat-form-field>
+
+<div class="weather">
+    <form (ngSubmit)="search()" class="weather__form" *ngIf="!isLoading">
+        <mat-form-field class="weather__input">
+            <mat-label>Город</mat-label>
+            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="geocode" name="geocode">
+        </mat-form-field>
+        <button mat-icon-button (click)="search()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+
+    <ng-container *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </ng-container>
 </div>

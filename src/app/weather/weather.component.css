@@ -1,0 +1,24 @@
+.weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.weather__input input {
+    text-align: center;
+}
+
+.weather__form {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    font-size: 24px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.weather__input {
+    width: 100%;
+}
