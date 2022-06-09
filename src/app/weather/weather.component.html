@@ -14,3 +14,8 @@
         <mat-spinner></mat-spinner>
     </ng-container>
 </div>
+
+<ng-container *ngIf="geoObject">
+    <h1>{{ geoObject.name }}</h1>
+    <p>{{ geoObject.Point.pos }}</p>
+</ng-container>
