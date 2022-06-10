@@ -8,24 +8,16 @@ import { WeatherResponse } from '../types/weather-response';
   providedIn: 'root',
 })
 export class WeatherService {
-  public loadedWeather: WeatherResponse | null = null;
-
   constructor(private http: HttpClient) {}
 
   getWeather(query: string) {
-    return this.http
-      .get<WeatherResponse>(environment.freeWeather.apiCurrent, {
-        params: {
-          key: environment.freeWeather.token,
-          q: query,
-          aqi: 'no',
-          lang: 'ru',
-        },
-      })
-      .pipe(
-        tap((weatherResponse) => {
-          this.loadedWeather = weatherResponse;
-        })
-      );
+    return this.http.get<WeatherResponse>(environment.freeWeather.apiCurrent, {
+      params: {
+        key: environment.freeWeather.token,
+        q: query,
+        aqi: 'no',
+        lang: 'ru',
+      },
+    });
   }
 }

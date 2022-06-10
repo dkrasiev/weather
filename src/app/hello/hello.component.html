@@ -1,18 +1,17 @@
 <div class="hello">
-    <div class="hello__content">
-
-        <div class="hello__header">
-            <h1 class="mat-display-2">Добрый день!</h1>
-        </div>
-        <div class="hello__cards">
-            <a mat-raised-button routerLink="time" class="hello__card">
-                <mat-icon>schedule</mat-icon>
-                <h1 style="margin: 0">Время</h1>
-            </a>        
-            <a mat-raised-button routerLink="weather" class="hello__card">
-                <mat-icon>sunny</mat-icon>
-                <h1 style="margin: 0">Погода</h1>
-            </a>
-        </div>
+  <div class="hello__content">
+    <div class="hello__header">
+      <h1 class="mat-display-2">{{ timeService.getHello() }}</h1>
     </div>
+    <div class="hello__cards">
+      <a mat-raised-button routerLink="time" class="hello__card">
+        <mat-icon>schedule</mat-icon>
+        <h1 style="margin: 0">Время</h1>
+      </a>
+      <a mat-raised-button routerLink="weather" class="hello__card">
+        <mat-icon>sunny</mat-icon>
+        <h1 style="margin: 0">Погода</h1>
+      </a>
+    </div>
+  </div>
 </div>

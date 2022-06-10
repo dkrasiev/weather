@@ -1,17 +1,56 @@
+<div class="weather" *ngIf="!isLoading">
+  <form (ngSubmit)="search()" class="weather__form">
+    <mat-form-field class="weather__input">
+      <mat-label>Город</mat-label>
+      <input
+        matInput
+        placeholder="Где Вы находитесь?"
+        [(ngModel)]="query"
+        name="query"
+        minlength="3"
+      />
+      <mat-error>Минимум три символа</mat-error>
+    </mat-form-field>
+    <button mat-icon-button (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
 
-<div class="weather">
-    <form (ngSubmit)="search()" class="weather__form" *ngIf="!isLoading">
-        <mat-form-field class="weather__input">
-            <mat-label>Город</mat-label>
-            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="query" name="query" minlength="3">
-            <mat-error >Минимум три символа</mat-error>
-        </mat-form-field>
-        <button mat-icon-button (click)="search()">
-            <mat-icon>search</mat-icon>
-        </button>
-    </form>
+  <mat-card class="weather__result" *ngIf="loadedWeather">
+    <mat-card-header>
+      <img
+        mat-card-avatar
+        style="border-radius: 0"
+        [src]="loadedWeather?.current?.condition?.icon"
+      />
+      <mat-card-title>{{ loadedWeather?.location?.name }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ loadedWeather?.location?.country }}
+      </mat-card-subtitle>
+    </mat-card-header>
 
-    <ng-container *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
-    </ng-container>
+    <mat-card-content class="weather__content">
+      <span style="font-size: 32px">
+        {{ loadedWeather?.current?.temp_c }} °C
+      </span>
+      <div>
+        <p style="margin: 0">{{ loadedWeather?.current?.condition?.text }}</p>
+        <p style="margin: 0">
+          Ощущается как {{ loadedWeather.current.feelslike_c }} °C
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div
+  *ngIf="isLoading"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  "
+>
+  <mat-spinner></mat-spinner>
 </div>

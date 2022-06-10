@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimeService } from '../services/time.service';
 
 @Component({
   selector: 'app-time',
@@ -6,23 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./time.component.css'],
 })
 export class TimeComponent implements OnInit {
-  currentDate: Date = new Date();
-  time: string = '';
+  public time: string = '';
 
-  constructor() {}
+  constructor(private timeService: TimeService) {}
 
   ngOnInit(): void {
     setInterval(() => {
-      this._updateTime();
+      this.time = this.timeService.getTime();
     }, 10);
   }
 
   private _updateTime() {
-    this.currentDate = new Date();
+    const currentDate = new Date();
 
-    const hours = this.currentDate.getHours();
-    const minutes = this.currentDate.getMinutes();
-    const seconds = this.currentDate.getSeconds();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const seconds = currentDate.getSeconds();
 
     this.time = `${hours < 10 ? '0' + hours : hours.toString()}:${
       minutes < 10 ? '0' + minutes : minutes.toString()

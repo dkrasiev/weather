@@ -1,5 +1,9 @@
 .container {
-    padding: 10px;
-    margin: auto;
-    max-width: 800px;
+  padding: 10px;
+  margin: auto;
+  max-width: 800px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
