@@ -16,7 +16,5 @@ export class AppComponent implements OnInit {
     setInterval(() => {
       this.currentTime = this.timeService.getTime().slice(0, -3);
     }, 1000);
-
-    console.log(this.router.url);
   }
 }

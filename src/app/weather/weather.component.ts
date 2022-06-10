@@ -22,7 +22,6 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getWeather(this.query).subscribe({
       next: (v) => {
         this.loadedWeather = v;
-        console.log(this.loadedWeather);
 
         this.isLoading = false;
       },
