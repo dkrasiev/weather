@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { WeatherResponse } from '../shared/weather-response';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'app-weather',
@@ -9,37 +7,23 @@ import { WeatherResponse } from '../shared/weather-response';
   styleUrls: ['./weather.component.css'],
 })
 export class WeatherComponent implements OnInit {
-  query: string = '';
-  weatherData: WeatherResponse = null as any;
-  isLoading: boolean = false;
+  public query: string = '';
+  public isLoading: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
   search() {
     this.isLoading = true;
 
-    this.http
-      .get<WeatherResponse>(environment.freeWeather.apiCurrent, {
-        params: {
-          key: environment.freeWeather.token,
-          q: this.query,
-          aqi: 'no',
-        },
-      })
-      .subscribe({
-        next: (v) => {
-          console.log(v);
-
-          this.weatherData = v;
-
-          this.isLoading = false;
-        },
-        error: (e) => {
-          console.error(e);
-          this.isLoading = false;
-        },
-      });
+    this.weatherService.getWeather(this.query).subscribe({
+      next: (v) => {
+        this.isLoading = false;
+      },
+      error: (e) => {
+        this.isLoading = false;
+      },
+    });
   }
 }

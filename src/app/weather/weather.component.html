@@ -3,7 +3,8 @@
     <form (ngSubmit)="search()" class="weather__form" *ngIf="!isLoading">
         <mat-form-field class="weather__input">
             <mat-label>Город</mat-label>
-            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="query" name="query">
+            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="query" name="query" minlength="3">
+            <mat-error >Минимум три символа</mat-error>
         </mat-form-field>
         <button mat-icon-button (click)="search()">
             <mat-icon>search</mat-icon>
@@ -14,8 +15,3 @@
         <mat-spinner></mat-spinner>
     </ng-container>
 </div>
-
-<ng-container *ngIf="weatherData">
-    <h1>{{ weatherData.location.name }}</h1>
-    <p>{{ weatherData.current.temp_c }}</p>
-</ng-container>
