@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
+import { WeatherResponse } from '../types/weather-response';
 
 @Component({
   selector: 'app-weather',
@@ -9,6 +10,7 @@ import { WeatherService } from '../services/weather.service';
 export class WeatherComponent implements OnInit {
   public query: string = '';
   public isLoading: boolean = false;
+  public loadedWeather: WeatherResponse | null = null;
 
   constructor(private weatherService: WeatherService) {}
 
@@ -19,6 +21,9 @@ export class WeatherComponent implements OnInit {
 
     this.weatherService.getWeather(this.query).subscribe({
       next: (v) => {
+        this.loadedWeather = v;
+        console.log(this.loadedWeather);
+
         this.isLoading = false;
       },
       error: (e) => {
