@@ -4,11 +4,19 @@
       <h1 class="mat-display-2">{{ timeService.getHello() }}</h1>
     </div>
     <div class="hello__cards">
-      <a mat-raised-button routerLink="time" class="hello__card">
+      <a
+        mat-raised-button
+        routerLink="time"
+        class="hello__card hello__card_time"
+      >
         <mat-icon>schedule</mat-icon>
         <h1 style="margin: 0">Время</h1>
       </a>
-      <a mat-raised-button routerLink="weather" class="hello__card">
+      <a
+        mat-raised-button
+        routerLink="weather"
+        class="hello__card hello__card_weather"
+      >
         <mat-icon>sunny</mat-icon>
         <h1 style="margin: 0">Погода</h1>
       </a>
