@@ -37,14 +37,14 @@
 
 .hello__card_time:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(/assets/img/clock-background.jpg);
+    url(~src/assets/img/clock-background.jpg);
   background-size: cover;
   color: white;
 }
 
 .hello__card_weather:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(/assets/img/weather-background.jpg);
+    url(~src/assets/img/weather-background.jpg);
   background-size: cover;
   color: white;
 }

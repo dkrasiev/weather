@@ -104,7 +104,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://dkrasiev.github.io/weather/",
+            "baseHref": "/weather/",
             "name": "Dmitry Krasiev",
             "email": "dmitrykrasiev@gmail.com"
           }
