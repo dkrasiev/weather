@@ -3,7 +3,7 @@
     <form (ngSubmit)="search()" class="weather__form" *ngIf="!isLoading">
         <mat-form-field class="weather__input">
             <mat-label>Город</mat-label>
-            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="geocode" name="geocode">
+            <input matInput placeholder="Где Вы находитесь?" [(ngModel)]="query" name="query">
         </mat-form-field>
         <button mat-icon-button (click)="search()">
             <mat-icon>search</mat-icon>
@@ -15,7 +15,7 @@
     </ng-container>
 </div>
 
-<ng-container *ngIf="geoObject">
-    <h1>{{ geoObject.name }}</h1>
-    <p>{{ geoObject.Point.pos }}</p>
+<ng-container *ngIf="weatherData">
+    <h1>{{ weatherData.location.name }}</h1>
+    <p>{{ weatherData.current.temp_c }}</p>
 </ng-container>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { GeocoderResponse, GeoObject } from '../shared/geocoder-response';
+import { WeatherResponse } from '../shared/weather-response';
 
 @Component({
   selector: 'app-weather',
@@ -9,8 +9,8 @@ import { GeocoderResponse, GeoObject } from '../shared/geocoder-response';
   styleUrls: ['./weather.component.css'],
 })
 export class WeatherComponent implements OnInit {
-  geocode: string = '';
-  geoObject: GeoObject = null as any;
+  query: string = '';
+  weatherData: WeatherResponse = null as any;
   isLoading: boolean = false;
 
   constructor(private http: HttpClient) {}
@@ -21,42 +21,23 @@ export class WeatherComponent implements OnInit {
     this.isLoading = true;
 
     this.http
-      .get<GeocoderResponse>(environment.yandex.geocoderApi, {
+      .get<WeatherResponse>(environment.freeWeather.apiCurrent, {
         params: {
-          geocode: this.geocode,
-          apikey: environment.yandex.geocoderToken,
-          format: 'json',
-          kind: 'locality',
-          results: 1,
+          key: environment.freeWeather.token,
+          q: this.query,
+          aqi: 'no',
         },
       })
       .subscribe({
         next: (v) => {
-          this.geoObject =
-            v.response.GeoObjectCollection.featureMember[0].GeoObject;
-            
-          // Тест api погоды
-          this.http
-            .get(environment.yandex.weatherApi, {
-              headers: { 'X-Yandex-API-Key': environment.yandex.weatherToken },
-              params: {
-                lat: this.geoObject.Point.pos.split(' ')[0],
-                lon: this.geoObject.Point.pos.split(' ')[1],
-              },
-            })
-            .subscribe({
-              next: (v) => {
-                console.log(v);
-              },
-              error: (e) => console.log(e),
-            });
+          console.log(v);
+
+          this.weatherData = v;
+
+          this.isLoading = false;
         },
         error: (e) => {
           console.error(e);
-          this.isLoading = false;
-        },
-        complete: () => {
-          console.log('completed');
           this.isLoading = false;
         },
       });
