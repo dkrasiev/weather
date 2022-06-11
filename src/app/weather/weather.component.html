@@ -7,11 +7,9 @@
         placeholder="Где Вы находитесь?"
         [(ngModel)]="query"
         name="query"
-        minlength="3"
       />
-      <mat-error>Минимум три символа</mat-error>
     </mat-form-field>
-    <button mat-icon-button (click)="search()">
+    <button mat-icon-button type="submit">
       <mat-icon>search</mat-icon>
     </button>
   </form>
@@ -23,21 +21,38 @@
         style="border-radius: 0"
         [src]="loadedWeather?.current?.condition?.icon"
       />
-      <mat-card-title>{{ loadedWeather?.location?.name }}</mat-card-title>
+      <mat-card-title
+        >{{ loadedWeather?.location?.country }},
+        {{ loadedWeather?.location?.name }}</mat-card-title
+      >
       <mat-card-subtitle>
-        {{ loadedWeather?.location?.country }}
+        {{ loadedWeather?.current?.condition?.text }}
       </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content class="weather__content">
-      <span style="font-size: 32px">
-        {{ loadedWeather?.current?.temp_c }} °C
-      </span>
-      <div>
-        <p style="margin: 0">{{ loadedWeather?.current?.condition?.text }}</p>
-        <p style="margin: 0">
-          Ощущается как {{ loadedWeather.current.feelslike_c }} °C
-        </p>
+      <div class="weather__temp">
+        <span style="font-size: 32px">
+          {{ loadedWeather?.current?.temp_c }} °C
+        </span>
+
+        <span class="mat-body"
+          >Ощущается как {{ loadedWeather.current.feelslike_c }} °C</span
+        >
+      </div>
+
+      <div class="weather__wind">
+        <mat-icon>air</mat-icon>
+        <p>{{ loadedWeather.current.wind_kph }} км/ч</p>
+        <p>{{ loadedWeather.current.wind_dir }}</p>
+        <mat-icon
+          inline="true"
+          [ngStyle]="{
+            transform: 'rotate(' + loadedWeather.current.wind_degree + 'deg)'
+          }"
+        >
+          north
+        </mat-icon>
       </div>
     </mat-card-content>
   </mat-card>

@@ -1,31 +1,10 @@
-/* .weather {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-
-    flex-direction: column;
-}
-
-.weather__form {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-
-    font-size: 24px;
-    width: 100%;
-    max-width: 500px;
-}
-
-.weather__input {
-    width: 100%;
-} */
-
 .weather__input input {
   text-align: center;
 }
 
 .weather {
+  max-width: 800px;
+  margin: auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -33,21 +12,35 @@
 }
 
 .weather__form {
-  /* width: auto; */
   font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .weather__input {
-  width: auto;
-  min-width: 300px;
-  max-width: 1000px;
+  flex: 1 1 auto;
+  max-width: 600px;
 }
 
 .weather__content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .weather__content * {
-  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.weather__result {
+  width: 100%;
+}
+
+.weather__wind {
+  display: flex;
+  align-items: center;
+}
+.weather__wind * {
+  margin-right: 4px;
 }

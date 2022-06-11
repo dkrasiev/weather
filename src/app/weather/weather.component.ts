@@ -19,9 +19,11 @@ export class WeatherComponent implements OnInit {
   search() {
     this.isLoading = true;
 
-    this.weatherService.getWeather(this.query).subscribe({
+    this.weatherService.getCurrentWeather(this.query).subscribe({
       next: (v) => {
         this.loadedWeather = v;
+
+        console.log(this.loadedWeather);
 
         this.isLoading = false;
       },

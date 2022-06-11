@@ -10,8 +10,8 @@ import { WeatherResponse } from '../types/weather-response';
 export class WeatherService {
   constructor(private http: HttpClient) {}
 
-  getWeather(query: string) {
-    return this.http.get<WeatherResponse>(environment.freeWeather.apiCurrent, {
+  getCurrentWeather(query: string) {
+    return this.http.get<WeatherResponse>(environment.freeWeather.realtimeAPI, {
       params: {
         key: environment.freeWeather.token,
         q: query,
@@ -20,4 +20,6 @@ export class WeatherService {
       },
     });
   }
+
+  getForecast(query: string) {}
 }
