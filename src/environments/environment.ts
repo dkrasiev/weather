@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   freeWeather: {
     realtimeAPI: 'https://api.weatherapi.com/v1/current.json',
-    forecastAPI: 'http://api.weatherapi.com/v1/forecast.json',
+    forecastAPI: 'https://api.weatherapi.com/v1/forecast.json',
     token: '8b2c9005ff664e6189475921221006',
   },
 };
