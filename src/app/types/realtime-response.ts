@@ -41,7 +41,7 @@ export interface Current {
   gust_kph: number;
 }
 
-export interface WeatherResponse {
+export interface RealtimeResponse {
   location: Location;
   current: Current;
 }

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { WeatherResponse } from '../types/weather-response';
+import { ForecastResponse } from '../types/forecast-response';
+import { RealtimeResponse } from '../types/realtime-response';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +11,33 @@ import { WeatherResponse } from '../types/weather-response';
 export class WeatherService {
   constructor(private http: HttpClient) {}
 
-  getCurrentWeather(query: string) {
-    return this.http.get<WeatherResponse>(environment.freeWeather.realtimeAPI, {
-      params: {
-        key: environment.freeWeather.token,
-        q: query,
-        aqi: 'no',
-        lang: 'ru',
-      },
-    });
+  getCurrentWeather(query: string): Observable<RealtimeResponse> {
+    return this.http.get<RealtimeResponse>(
+      environment.freeWeather.realtimeAPI,
+      {
+        params: {
+          key: environment.freeWeather.token,
+          q: query,
+          aqi: 'no',
+          lang: 'ru',
+        },
+      }
+    );
   }
 
-  getForecast(query: string) {}
+  getForecast(query: string): Observable<ForecastResponse> {
+    return this.http.get<ForecastResponse>(
+      environment.freeWeather.forecastAPI,
+      {
+        params: {
+          key: environment.freeWeather.token,
+          q: query,
+          days: 10,
+          aqi: 'no',
+          alerts: 'no',
+          lang: 'ru',
+        },
+      }
+    );
+  }
 }

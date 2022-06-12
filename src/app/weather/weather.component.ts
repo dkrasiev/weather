@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
-import { WeatherResponse } from '../types/weather-response';
+import { RealtimeResponse } from '../types/realtime-response';
 
 @Component({
   selector: 'app-weather',
@@ -10,7 +10,7 @@ import { WeatherResponse } from '../types/weather-response';
 export class WeatherComponent implements OnInit {
   public query: string = '';
   public isLoading: boolean = false;
-  public loadedWeather: WeatherResponse | null = null;
+  public loadedWeather: RealtimeResponse | null = null;
 
   constructor(private weatherService: WeatherService) {}
 
@@ -29,6 +29,12 @@ export class WeatherComponent implements OnInit {
       },
       error: (e) => {
         this.isLoading = false;
+      },
+    });
+
+    this.weatherService.getForecast(this.query).subscribe({
+      next: (v) => {
+        console.log(v);
       },
     });
   }
