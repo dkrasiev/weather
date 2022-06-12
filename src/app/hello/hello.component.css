@@ -27,7 +27,7 @@
 
   border-radius: 10%;
 
-  transition: all 0.1s;
+  transition: all 0.25s;
 }
 
 .hello__card:hover {

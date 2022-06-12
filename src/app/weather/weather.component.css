@@ -33,9 +33,9 @@
   margin-bottom: 8px;
 }
 
-.weather__result {
-  width: 100%;
-}
+/* .weather__result {
+  width: 100%; 
+} */
 
 .weather__wind {
   display: flex;
@@ -43,4 +43,8 @@
 }
 .weather__wind * {
   margin-right: 4px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

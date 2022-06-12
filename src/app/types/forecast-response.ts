@@ -41,12 +41,6 @@ export interface Current {
   gust_kph: number;
 }
 
-export interface Condition2 {
-  text: string;
-  icon: string;
-  code: number;
-}
-
 export interface Day {
   maxtemp_c: number;
   maxtemp_f: number;
@@ -65,7 +59,7 @@ export interface Day {
   daily_chance_of_rain: number;
   daily_will_it_snow: number;
   daily_chance_of_snow: number;
-  condition: Condition2;
+  condition: Condition;
   uv: number;
 }
 
@@ -78,19 +72,13 @@ export interface Astro {
   moon_illumination: string;
 }
 
-export interface Condition3 {
-  text: string;
-  icon: string;
-  code: number;
-}
-
 export interface Hour {
   time_epoch: number;
   time: string;
   temp_c: number;
   temp_f: number;
   is_day: number;
-  condition: Condition3;
+  condition: Condition;
   wind_mph: number;
   wind_kph: number;
   wind_degree: number;
