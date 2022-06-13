@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
-import { ForecastResponse } from '../types/forecast-response';
+import { ForecastResponse, Location } from '../types/forecast-response';
 
 @Component({
   selector: 'app-weather',
@@ -12,7 +12,9 @@ export class WeatherComponent implements OnInit {
   public isLoading: boolean = false;
   public loadedWeather: ForecastResponse | null = null;
 
-  constructor(private weatherService: WeatherService) {}
+  public autocomplete: Location[] = [];
+
+  constructor(public weatherService: WeatherService) {}
 
   ngOnInit(): void {}
 
@@ -29,6 +31,21 @@ export class WeatherComponent implements OnInit {
       },
       error: (e) => {
         this.isLoading = false;
+      },
+    });
+
+    this.autocomplete = [];
+  }
+
+  updateAutocomplete() {
+    if (this.query.length < 3) {
+      this.autocomplete = [];
+      return;
+    }
+
+    this.weatherService.match(this.query).subscribe({
+      next: (v) => {
+        this.autocomplete = v;
       },
     });
   }

@@ -2,13 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ForecastResponse } from '../types/forecast-response';
+import { ForecastResponse, Location } from '../types/forecast-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
   constructor(private http: HttpClient) {}
+
+  match(query: string): Observable<Location[]> {
+    return this.http.get<Location[]>(environment.freeWeather.searchAPI, {
+      params: {
+        key: environment.freeWeather.token,
+        q: query,
+      },
+    });
+  }
 
   getForecast(query: string): Observable<ForecastResponse> {
     return this.http

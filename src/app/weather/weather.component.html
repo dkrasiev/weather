@@ -7,10 +7,17 @@
         placeholder="Где Вы находитесь?"
         [(ngModel)]="query"
         name="query"
+        [matAutocomplete]="auto"
+        (ngModelChange)="updateAutocomplete()"
       />
+      <mat-autocomplete #auto (optionSelected)="search()">
+        <mat-option *ngFor="let item of autocomplete" [value]="item.name">
+          {{ item.country + ", " + item.region + ", " + item.name }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
     <button mat-icon-button type="submit">
-      <mat-icon>search</mat-icon>
+      <mat-icon> search </mat-icon>
     </button>
   </form>
 
@@ -25,7 +32,6 @@
     <div class="weather__forecast">
       <div *ngFor="let day of loadedWeather?.forecast?.forecastday">
         <app-weather-card
-          *ngIf="day.date != 'Сегодня'"
           [weatherData]="day"
           [locationData]="loadedWeather?.location"
         ></app-weather-card>
