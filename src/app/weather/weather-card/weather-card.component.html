@@ -1,21 +1,13 @@
 <mat-card class="weather-card">
-  <mat-card-header>
+  <mat-card-header style="padding-bottom: 16px">
     <img
       mat-card-avatar
       style="border-radius: 0"
       [src]="weatherData?.day?.condition?.icon"
     />
-    <mat-card-title>
-      <span>
-        {{ locationData?.country }},
-        {{ locationData?.name }}
-      </span>
-      <span style="flex: 1 1 auto; width: auto"></span>
-      <span>{{ weatherData?.date }}</span>
-    </mat-card-title>
-    <mat-card-subtitle>
+    <mat-card-title style="margin: 8px auto">
       {{ weatherData?.day?.condition?.text }}
-    </mat-card-subtitle>
+    </mat-card-title>
   </mat-card-header>
 
   <mat-card-content class="weather-card__content">

@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.weather__result * {
+.weather__result > * {
   margin-top: 16px;
 }
 
@@ -35,7 +35,7 @@
   justify-content: center;
   align-items: center;
 }
-.weather__forecast * {
+.weather__forecast > * {
   margin-right: 8px;
 }
 
@@ -44,4 +44,8 @@
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+}
+
+.weather__day > * {
+  margin-top: 8px;
 }

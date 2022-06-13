@@ -28,13 +28,12 @@ export class WeatherComponent implements OnInit {
         console.log(v);
 
         this.isLoading = false;
+        this.autocomplete = [];
       },
       error: (e) => {
         this.isLoading = false;
       },
     });
-
-    this.autocomplete = [];
   }
 
   updateAutocomplete() {
