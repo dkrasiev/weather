@@ -1,4 +1,4 @@
-<div class="weather" *ngIf="!isLoading">
+<div class="weather">
   <form (ngSubmit)="search()" class="weather__form">
     <mat-form-field class="weather__input">
       <mat-label>Город</mat-label>
@@ -14,7 +14,7 @@
     </button>
   </form>
 
-  <div class="weather__result" *ngIf="loadedWeather">
+  <div class="weather__result" *ngIf="loadedWeather && !isLoading">
     <div class="weather__current">
       <app-weather-card-current
         [weatherData]="loadedWeather?.current"
@@ -32,16 +32,8 @@
       </div>
     </div>
   </div>
-</div>
 
-<div
-  *ngIf="isLoading"
-  style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  "
->
-  <mat-spinner></mat-spinner>
+  <div *ngIf="isLoading" class="weather__spinner">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>
