@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WeatherService } from '../services/weather.service';
 import { ForecastResponse, Location } from '../types/forecast-response';
 
@@ -20,6 +21,7 @@ export class WeatherComponent implements OnInit {
 
   search() {
     this.isLoading = true;
+    this.autocomplete = [];
 
     this.weatherService.getForecast(this.query).subscribe({
       next: (v) => {
@@ -28,7 +30,6 @@ export class WeatherComponent implements OnInit {
         console.log(v);
 
         this.isLoading = false;
-        this.autocomplete = [];
       },
       error: (e) => {
         this.isLoading = false;
