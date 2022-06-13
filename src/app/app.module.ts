@@ -10,9 +10,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { HelloComponent } from './hello/hello.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { WeatherCardComponent } from './weather/weather-card/weather-card.component';
+import { WeatherCardCurrentComponent } from './weather/weather-card-current/weather-card-current.component';
 
 @NgModule({
-  declarations: [AppComponent, TimeComponent, WeatherComponent, HelloComponent],
+  declarations: [
+    AppComponent,
+    TimeComponent,
+    WeatherComponent,
+    HelloComponent,
+    WeatherCardComponent,
+    WeatherCardCurrentComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

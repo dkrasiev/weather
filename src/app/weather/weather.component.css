@@ -3,20 +3,16 @@
 }
 
 .weather {
-  max-width: 800px;
   margin: auto;
   padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .weather__form {
   font-size: 24px;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 .weather__input {
@@ -24,27 +20,21 @@
   max-width: 600px;
 }
 
-.weather__content {
+.weather__result {
   display: flex;
   flex-direction: column;
-}
-
-.weather__content * {
-  margin-bottom: 8px;
-}
-
-/* .weather__result {
-  width: 100%; 
-} */
-
-.weather__wind {
-  display: flex;
   align-items: center;
 }
-.weather__wind * {
-  margin-right: 4px;
+
+.weather__result * {
+  margin-top: 16px;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.weather__forecast {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weather__forecast * {
+  margin-right: 8px;
 }

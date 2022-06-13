@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
 import { ForecastResponse } from '../types/forecast-response';
-import { RealtimeResponse } from '../types/realtime-response';
 
 @Component({
   selector: 'app-weather',

@@ -14,52 +14,24 @@
     </button>
   </form>
 
-  <mat-card class="weather__result" *ngIf="loadedWeather">
-    <mat-card-header>
-      <img
-        mat-card-avatar
-        style="border-radius: 0"
-        [src]="loadedWeather?.current?.condition?.icon"
-      />
-      <mat-card-title>
-        <span>
-          {{ loadedWeather?.location?.country }},
-          {{ loadedWeather?.location?.name }}
-        </span>
-        <span style="flex: 1 1 auto; width: auto"></span>
-        <span>{{ loadedWeather.current.last_updated.split(" ")[1] }}</span>
-      </mat-card-title>
-      <mat-card-subtitle>
-        {{ loadedWeather?.current?.condition?.text }}
-      </mat-card-subtitle>
-    </mat-card-header>
+  <div class="weather__result" *ngIf="loadedWeather">
+    <div class="weather__current">
+      <app-weather-card-current
+        [weatherData]="loadedWeather?.current"
+        [locationData]="loadedWeather?.location"
+      ></app-weather-card-current>
+    </div>
 
-    <mat-card-content class="weather__content">
-      <div class="weather__temp">
-        <span style="font-size: 32px">
-          {{ loadedWeather?.current?.temp_c }} °C
-        </span>
-
-        <span class="mat-body"
-          >Ощущается как {{ loadedWeather.current.feelslike_c }} °C</span
-        >
+    <div class="weather__forecast">
+      <div *ngFor="let day of loadedWeather?.forecast?.forecastday">
+        <app-weather-card
+          *ngIf="day.date != 'Сегодня'"
+          [weatherData]="day"
+          [locationData]="loadedWeather?.location"
+        ></app-weather-card>
       </div>
-
-      <div class="weather__wind">
-        <mat-icon>air</mat-icon>
-        <p>{{ loadedWeather.current.wind_kph }} км/ч</p>
-        <p>{{ loadedWeather.current.wind_dir }}</p>
-        <mat-icon
-          inline="true"
-          [ngStyle]="{
-            transform: 'rotate(' + loadedWeather.current.wind_degree + 'deg)'
-          }"
-        >
-          north
-        </mat-icon>
-      </div>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>
 
 <div
