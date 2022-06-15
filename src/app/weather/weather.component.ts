@@ -33,8 +33,6 @@ export class WeatherComponent implements OnInit {
         this.autocomplete = [];
       },
       error: (e) => {
-        console.log(e);
-
         this.error = e;
 
         this.isLoading = false;
