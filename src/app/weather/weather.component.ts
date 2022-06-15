@@ -12,6 +12,7 @@ export class WeatherComponent implements OnInit {
   public query: string = '';
   public isLoading: boolean = false;
   public loadedWeather: ForecastResponse | null = null;
+  public error: string | null = null;
 
   public autocomplete: Location[] = [];
 
@@ -22,17 +23,22 @@ export class WeatherComponent implements OnInit {
   search() {
     this.isLoading = true;
     this.autocomplete = [];
+    this.error = null;
 
     this.weatherService.getForecast(this.query).subscribe({
       next: (v) => {
         this.loadedWeather = v;
 
-        console.log(v);
-
         this.isLoading = false;
+        this.autocomplete = [];
       },
       error: (e) => {
+        console.log(e);
+
+        this.error = e;
+
         this.isLoading = false;
+        this.autocomplete = [];
       },
     });
   }

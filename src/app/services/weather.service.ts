@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ForecastResponse, Location } from '../types/forecast-response';
 
@@ -56,6 +56,16 @@ export class WeatherService {
               }
             }
           }
+        }),
+        catchError((e) => {
+          let error = 'Неизвестная ошибка';
+
+          switch (e.status) {
+            case 400:
+              error = 'Город не найден';
+          }
+
+          throw error;
         })
       );
   }

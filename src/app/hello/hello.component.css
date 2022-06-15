@@ -1,6 +1,7 @@
 .hello__cards {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .hello__header {
@@ -20,7 +21,7 @@
 .hello__card {
   min-width: 200px;
   min-height: 200px;
-  margin-left: 25px;
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

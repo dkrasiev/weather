@@ -13,6 +13,11 @@
   <mat-card-content class="weather-card__content">
     <div class="weather-card__temp">
       <span>
+        {{ weatherData?.day?.avgtemp_c }}
+        °C
+      </span>
+      /
+      <span>
         {{
           (weatherData?.day?.mintemp_c! > 0 ? "+" : "") +
             weatherData?.day?.mintemp_c

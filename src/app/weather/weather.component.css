@@ -29,11 +29,15 @@
 .weather__result > * {
   margin-top: 16px;
 }
+.weather__current {
+  margin-bottom: 16px;
+}
 
 .weather__forecast {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .weather__forecast > * {
   margin-right: 8px;
