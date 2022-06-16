@@ -1,6 +1,9 @@
-<div
-  class="time"
-  [ngStyle]="{ transform: 'rotate(' + timeService.clockRotation + 'deg)' }"
->
-  <h3 class="mat-display-4">{{ timeService.getTime() }}</h3>
+<div class="time">
+  <p
+    [ngStyle]="{ transform: 'rotate(' + timeService.clockRotation + 'deg)' }"
+    class="mat-display-4"
+    style="margin: 0; padding: 0"
+  >
+    {{ time }}
+  </p>
 </div>

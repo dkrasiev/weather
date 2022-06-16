@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
 import { TimeService } from '../services/time.service';
 
 @Component({
@@ -7,9 +8,14 @@ import { TimeService } from '../services/time.service';
   styleUrls: ['./time.component.css'],
 })
 export class TimeComponent implements OnInit {
+  public time: string = '';
   public isVertical: boolean = false;
 
   constructor(public timeService: TimeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => {
+      this.time = this.timeService.getTime();
+    }, 50);
+  }
 }
