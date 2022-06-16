@@ -5,6 +5,8 @@ import * as dayjs from 'dayjs';
   providedIn: 'root',
 })
 export class TimeService {
+  public clockRotation: number = 0;
+
   constructor() {}
 
   getTime(): string {
@@ -12,7 +14,7 @@ export class TimeService {
   }
 
   getHello(): string {
-    const currentHours = new Date().getHours();
+    const currentHours = dayjs().hour();
 
     if (6 < currentHours && currentHours < 12) {
       return 'Доброе утро!';
@@ -23,5 +25,11 @@ export class TimeService {
     }
 
     return 'Доброй ночи!';
+  }
+
+  rotateClock() {
+    this.clockRotation += 90;
+
+    if (this.clockRotation == 360) this.clockRotation = 0;
   }
 }

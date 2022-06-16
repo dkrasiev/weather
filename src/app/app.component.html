@@ -1,7 +1,12 @@
 <mat-toolbar>
-  <a mat-button routerLink="/">Главная</a>
+  <a mat-button *ngIf="router.url != '/'" routerLink="/">Главная</a>
   <span class="spacer"></span>
   <span *ngIf="router.url != '/time'">{{ currentTime }}</span>
+  <span *ngIf="router.url == '/time'">
+    <button mat-button (click)="timeService.rotateClock()">
+      Повернуть часы
+    </button>
+  </span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
