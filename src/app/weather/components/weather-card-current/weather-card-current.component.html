@@ -19,8 +19,8 @@
 
   <mat-card-content class="card__content">
     <div class="card__temp row-baseline">
-      <h1>{{ weatherData?.temp_c }} °C</h1>
-      <p>Ощущается как {{ weatherData?.feelslike_c }} °C</p>
+      <h1>{{ weatherData?.temp_c! | temp }}</h1>
+      <p>Ощущается как {{ weatherData?.feelslike_c! | temp }}</p>
     </div>
 
     <div class="card__wind row">

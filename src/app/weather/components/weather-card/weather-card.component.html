@@ -12,26 +12,18 @@
 
   <mat-card-content class="weather-card__content">
     <div class="weather-card__temp">
-      <span>
-        {{ weatherData?.day?.avgtemp_c }}
-        °C
-      </span>
-      /
-      <span>
-        {{
-          (weatherData?.day?.mintemp_c! > 0 ? "+" : "") +
-            weatherData?.day?.mintemp_c
-        }}
-        °C
-      </span>
-      <span> ... </span>
-      <span>
-        {{
-          (weatherData?.day?.mintemp_c! > 0 ? "+" : "") +
-            weatherData?.day?.maxtemp_c
-        }}
-        °C
-      </span>
+      <p>
+        {{ weatherData?.day?.avgtemp_c! | temp }}
+      </p>
+      <p>
+        <span>
+          {{ weatherData?.day?.mintemp_c! | temp }}
+        </span>
+        <span> ... </span>
+        <span>
+          {{ weatherData?.day?.maxtemp_c! | temp }}
+        </span>
+      </p>
     </div>
   </mat-card-content>
 </mat-card>

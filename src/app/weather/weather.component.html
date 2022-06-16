@@ -59,8 +59,8 @@
                 </mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p style="font-size: 20px">{{ hour?.temp_c }} °C</p>
-                <p>Ощущается как {{ hour?.feelslike_c }} °C</p>
+                <p style="font-size: 20px">{{ hour?.temp_c! | temp }}</p>
+                <p>Ощущается как {{ hour?.feelslike_c! | temp }}</p>
               </mat-card-content>
             </mat-card>
           </div>
