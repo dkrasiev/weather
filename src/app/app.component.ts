@@ -12,15 +12,9 @@ import * as dayjs from 'dayjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public currentTime: string = '';
-
   constructor(public timeService: TimeService, public router: Router) {}
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.currentTime = this.timeService.getTime().slice(0, -3);
-    }, 1000);
-
     dayjs.extend(relativeTime);
     dayjs.extend(localizedFormat);
     dayjs.extend(calendar);
