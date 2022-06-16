@@ -1,0 +1,27 @@
+.row {
+  display: flex;
+  align-items: center;
+}
+.row > * {
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+}
+
+.row-baseline {
+  display: flex;
+  align-items: baseline;
+}
+.row-baseline > * {
+  margin: 0;
+  padding: 0;
+  margin-right: 4px;
+}
+
+.card__content {
+  font-size: 16px;
+}
+
+.card__content > * {
+  margin-bottom: 4px;
+}

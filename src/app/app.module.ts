@@ -10,9 +10,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { HelloComponent } from './hello/hello.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { WeatherCardComponent } from './weather/components/weather-card/weather-card.component';
+import { WeatherCardCurrentComponent } from './weather/components/weather-card-current/weather-card-current.component';
+import { TempPipe } from './pipes/temp.pipe';
 
 @NgModule({
-  declarations: [AppComponent, TimeComponent, WeatherComponent, HelloComponent],
+  declarations: [
+    AppComponent,
+    TimeComponent,
+    WeatherComponent,
+    HelloComponent,
+    WeatherCardComponent,
+    WeatherCardCurrentComponent,
+    TempPipe,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

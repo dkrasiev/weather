@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
 import { TimeService } from '../services/time.service';
 
 @Component({
@@ -8,24 +9,13 @@ import { TimeService } from '../services/time.service';
 })
 export class TimeComponent implements OnInit {
   public time: string = '';
+  public isVertical: boolean = false;
 
-  constructor(private timeService: TimeService) {}
+  constructor(public timeService: TimeService) {}
 
   ngOnInit(): void {
     setInterval(() => {
       this.time = this.timeService.getTime();
-    }, 10);
-  }
-
-  private _updateTime() {
-    const currentDate = new Date();
-
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const seconds = currentDate.getSeconds();
-
-    this.time = `${hours < 10 ? '0' + hours : hours.toString()}:${
-      minutes < 10 ? '0' + minutes : minutes.toString()
-    }:${seconds < 10 ? '0' + seconds : seconds.toString()}`;
+    }, 50);
   }
 }

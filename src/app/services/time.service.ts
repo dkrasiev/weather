@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
+import * as dayjs from 'dayjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeService {
+  public clockRotation: number = 0;
+
   constructor() {}
 
   getTime(): string {
-    const currentDate = new Date();
-
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const seconds = currentDate.getSeconds();
-
-    const time = `${hours < 10 ? '0' + hours : hours.toString()}:${
-      minutes < 10 ? '0' + minutes : minutes.toString()
-    }:${seconds < 10 ? '0' + seconds : seconds.toString()}`;
-
-    return time;
+    return dayjs().format('HH:mm:ss');
   }
 
   getHello(): string {
-    const currentHours = new Date().getHours();
+    const currentHours = dayjs().hour();
 
     if (6 < currentHours && currentHours < 12) {
       return 'Доброе утро!';
@@ -32,5 +25,11 @@ export class TimeService {
     }
 
     return 'Доброй ночи!';
+  }
+
+  rotateClock() {
+    this.clockRotation += 90;
+
+    if (this.clockRotation == 360) this.clockRotation = 0;
   }
 }

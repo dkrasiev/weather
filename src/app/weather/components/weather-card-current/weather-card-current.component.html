@@ -1,0 +1,63 @@
+<mat-card class="card">
+  <mat-card-header>
+    <img
+      mat-card-avatar
+      style="border-radius: 0"
+      [src]="weatherData?.condition?.icon"
+    />
+    <mat-card-title>
+      <span>
+        {{ locationData?.country }},
+        {{ locationData?.name }}
+      </span>
+      <span>{{ weatherData?.last_updated!.split(" ")[1] }}</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ weatherData?.condition?.text }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="card__content">
+    <div class="card__temp row-baseline">
+      <h1>{{ weatherData?.temp_c! | temp }}</h1>
+      <p>Ощущается как {{ weatherData?.feelslike_c! | temp }}</p>
+    </div>
+
+    <div class="card__wind row">
+      <mat-icon>air</mat-icon>
+      <p>{{ weatherData?.wind_kph }} км/ч</p>
+      <p>{{ weatherData?.wind_dir }}</p>
+      <mat-icon
+        inline="true"
+        [ngStyle]="{
+          transform: 'rotate(' + weatherData?.wind_degree + 'deg)'
+        }"
+      >
+        north
+      </mat-icon>
+    </div>
+
+    <div class="weather__precip row">
+      <mat-icon>water_drop</mat-icon>
+      <p>{{ weatherData?.precip_mm }} мм</p>
+    </div>
+
+    <div class="weather__cloud row">
+      <mat-icon>cloud</mat-icon>
+      <p>{{ weatherData?.cloud! / 100 | percent }}</p>
+    </div>
+
+    <div class="card__humidity row">
+      <mat-icon>water</mat-icon>
+      <p>{{ weatherData?.humidity! / 100 | percent }}</p>
+    </div>
+
+    <div class="weather__pressure row">
+      <p>Давление {{ weatherData?.pressure_mb }} мм</p>
+    </div>
+
+    <div class="card__uv row">
+      <p>UV index {{ weatherData?.uv }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
