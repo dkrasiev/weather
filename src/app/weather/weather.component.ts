@@ -1,4 +1,6 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from '../services/weather.service';
 import { ForecastResponse, Location } from '../types/forecast-response';
 
@@ -15,14 +17,27 @@ export class WeatherComponent implements OnInit {
 
   public autocomplete: Location[] = [];
 
-  constructor(public weatherService: WeatherService) {}
+  constructor(
+    public weatherService: WeatherService,
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._route.queryParams.subscribe((params) => {
+      this.query = params['q'];
+      if (this.query) this.search();
+    });
+  }
 
   search() {
     this.isLoading = true;
     this.autocomplete = [];
     this.error = null;
+
+    this._router.navigate(['/weather'], {
+      queryParams: { q: this.query },
+    });
 
     this.weatherService.getForecast(this.query).subscribe({
       next: (v) => {
