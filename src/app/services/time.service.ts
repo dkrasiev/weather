@@ -8,7 +8,7 @@ export class TimeService {
   constructor() {}
 
   getTime(): string {
-    return dayjs().format('hh:mm:ss');
+    return dayjs().format('HH:mm:ss');
   }
 
   getHello(): string {
