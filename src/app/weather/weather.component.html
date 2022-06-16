@@ -31,11 +31,8 @@
       </div>
 
       <div class="weather__forecast">
-        <div
-          *ngFor="let day of loadedWeather?.forecast?.forecastday"
-          class="weather__day"
-        >
-          <div>
+        <div *ngFor="let day of loadedWeather?.forecast?.forecastday">
+          <div class="weather__day">
             <h1>{{ day.date }}</h1>
 
             <app-weather-card
@@ -44,27 +41,29 @@
             ></app-weather-card>
           </div>
 
-          <mat-card *ngFor="let hour of day.hour" class="weather__hour">
-            <mat-card-header>
-              <img
-                mat-card-avatar
-                style="border-radius: 0"
-                [src]="hour?.condition?.icon"
-              />
-              <mat-card-title>
-                <span>
-                  {{ hour?.time!.split(" ")[1] }}
-                </span>
-              </mat-card-title>
-              <mat-card-subtitle>
-                {{ hour?.condition?.text }}
-              </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <span style="font-size: 20px"> {{ hour?.temp_c }} °C </span>
-              <span> Ощущается как {{ hour.feelslike_c }} °C </span>
-            </mat-card-content>
-          </mat-card>
+          <div class="weather__hours">
+            <mat-card *ngFor="let hour of day.hour" class="weather__hour">
+              <mat-card-header>
+                <img
+                  mat-card-avatar
+                  style="border-radius: 0"
+                  [src]="hour?.condition?.icon"
+                />
+                <mat-card-title>
+                  <span>
+                    {{ hour?.time!.split(" ")[1] }}
+                  </span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  {{ hour?.condition?.text }}
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <span style="font-size: 20px"> {{ hour?.temp_c }} °C </span>
+                <span> Ощущается как {{ hour.feelslike_c }} °C </span>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
     </div>

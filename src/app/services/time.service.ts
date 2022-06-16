@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as dayjs from 'dayjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,17 +8,7 @@ export class TimeService {
   constructor() {}
 
   getTime(): string {
-    const currentDate = new Date();
-
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const seconds = currentDate.getSeconds();
-
-    const time = `${hours < 10 ? '0' + hours : hours.toString()}:${
-      minutes < 10 ? '0' + minutes : minutes.toString()
-    }:${seconds < 10 ? '0' + seconds : seconds.toString()}`;
-
-    return time;
+    return dayjs().format('hh:mm:ss');
   }
 
   getHello(): string {
