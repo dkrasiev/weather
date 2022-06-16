@@ -12,9 +12,7 @@
 
   <mat-card-content class="weather-card__content">
     <div class="weather-card__temp">
-      <p>
-        {{ weatherData?.day?.avgtemp_c! | temp }}
-      </p>
+      <p>В среднем {{ weatherData?.day?.avgtemp_c! | temp }}</p>
       <p>
         <span> От {{ weatherData?.day?.mintemp_c! | temp }} </span>
         <span> до {{ weatherData?.day?.maxtemp_c! | temp }} </span>
