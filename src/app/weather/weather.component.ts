@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { WeatherService } from '../services/weather.service';
 import { ForecastResponse, Location } from '../types/forecast-response';
 
