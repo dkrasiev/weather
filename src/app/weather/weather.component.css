@@ -31,22 +31,19 @@
   max-width: 100vw;
   display: flex;
   overflow: auto;
-
-  margin-bottom: 8px;
 }
-
-.weather__hour {
+.weather__hours > * {
   margin: 8px;
 }
 
 .weather__current {
   width: fit-content;
   margin: auto;
-  margin-bottom: 32px;
 }
 
 .weather__day {
   width: fit-content;
+  margin-top: 16px;
 }
 
 .weather__error {

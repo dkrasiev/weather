@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import * as dayjs from 'dayjs';
+import * as ru from 'dayjs/locale/ru';
+import { catchError, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ForecastResponse, Location } from '../types/forecast-response';
 
@@ -33,28 +35,19 @@ export class WeatherService {
       })
       .pipe(
         tap((response) => {
-          // response.forecast.forecastday = response.forecast.forecastday.filter(
-          //   (day) => {
-          //     return day.date.split('-')[2] != new Date().getDate().toString();
-          //   }
-          // );
+          for (const day of response.forecast.forecastday) {
+            const dayjsDate = dayjs(day.date).locale(ru);
 
-          for (const [index, day] of response.forecast.forecastday.entries()) {
-            switch (Number(day.date.split('-')[2]) - new Date().getDate()) {
-              case 0: {
-                day.date = 'Сегодня';
-                break;
-              }
-              case 1: {
-                day.date = 'Завтра';
+            day.date = dayjsDate.calendar(dayjs(), {
+              sameDay: '[Сегодня]', // The same day ( Today at 2:30 AM )
+              nextDay: '[Завтра]', // The next day ( Tomorrow at 2:30 AM )
+              nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
+              lastDay: '[Вчера]', // The day before ( Yesterday at 2:30 AM )
+              lastWeek: '[В прошлый] dddd', // Last week ( Last Monday at 2:30 AM )
+              sameElse: 'DD/MM/YYYY', // Everything else ( 7/10/2011 )
+            });
 
-                break;
-              }
-              case 2: {
-                day.date = 'Послезавтра';
-                break;
-              }
-            }
+            day.date = day.date[0].toUpperCase() + day.date.slice(1); // сделать первую букву заглавной
           }
         }),
         catchError((e) => {

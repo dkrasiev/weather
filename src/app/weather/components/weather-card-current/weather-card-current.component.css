@@ -1,9 +1,8 @@
-.row-center {
+.row {
   display: flex;
   align-items: center;
 }
-
-.row-center * {
+.row > * {
   margin: 0;
   padding: 0;
   margin-right: 4px;
@@ -13,6 +12,16 @@
   display: flex;
   align-items: baseline;
 }
-.row-baseline * {
+.row-baseline > * {
+  margin: 0;
+  padding: 0;
   margin-right: 4px;
+}
+
+.card__content {
+  font-size: 16px;
+}
+
+.card__content > * {
+  margin-bottom: 4px;
 }

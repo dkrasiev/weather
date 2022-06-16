@@ -42,7 +42,7 @@
           </div>
 
           <div class="weather__hours">
-            <mat-card *ngFor="let hour of day.hour" class="weather__hour">
+            <mat-card *ngFor="let hour of day.hour">
               <mat-card-header>
                 <img
                   mat-card-avatar
@@ -59,8 +59,8 @@
                 </mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <span style="font-size: 20px"> {{ hour?.temp_c }} °C </span>
-                <span> Ощущается как {{ hour.feelslike_c }} °C </span>
+                <p style="font-size: 20px">{{ hour?.temp_c }} °C</p>
+                <p>Ощущается как {{ hour?.feelslike_c }} °C</p>
               </mat-card-content>
             </mat-card>
           </div>
