@@ -16,13 +16,8 @@
         {{ weatherData?.day?.avgtemp_c! | temp }}
       </p>
       <p>
-        <span>
-          {{ weatherData?.day?.mintemp_c! | temp }}
-        </span>
-        <span> ... </span>
-        <span>
-          {{ weatherData?.day?.maxtemp_c! | temp }}
-        </span>
+        <span> От {{ weatherData?.day?.mintemp_c! | temp }} </span>
+        <span> до {{ weatherData?.day?.maxtemp_c! | temp }} </span>
       </p>
     </div>
   </mat-card-content>

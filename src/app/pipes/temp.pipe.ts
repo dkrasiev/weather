@@ -7,7 +7,7 @@ export class TempPipe implements PipeTransform {
   transform(value: string | number, ...args: unknown[]): string {
     value = value.toString();
 
-    if (Number(value) > 0) value = '+' + value;
+    // if (Number(value) > 0) value = '+' + value;
 
     value += ' °C';
 
