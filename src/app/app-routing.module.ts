@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HelloComponent } from './hello/hello.component';
-import { TimeComponent } from './time/time.component';
-import { WeatherComponent } from './weather/weather.component';
+import { HelloComponent } from './components/hello/hello.component';
+import { TimeComponent } from './components/time/time.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 const routes: Routes = [
   { path: '', component: HelloComponent },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
-import { TimeService } from '../services/time.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-time',

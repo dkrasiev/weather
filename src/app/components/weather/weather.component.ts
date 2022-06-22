@@ -1,8 +1,7 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WeatherService } from '../services/weather.service';
-import { ForecastResponse, Location } from '../types/forecast-response';
+import { WeatherService } from '../../services/weather.service';
+import { ForecastResponse, Location } from '../../types/forecast-response';
 
 @Component({
   selector: 'app-weather',

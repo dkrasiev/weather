@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeService } from '../services/time.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-hello',
