@@ -1,43 +1,52 @@
 <div class="weather">
-  <form (ngSubmit)="search()" class="weather__form">
+  <form (ngSubmit)="updateQuery(query)" class="weather__form">
     <mat-form-field class="weather__input">
       <mat-label>Город</mat-label>
       <input
+        #input
         matInput
-        placeholder="Где Вы находитесь?"
-        [(ngModel)]="query"
         name="query"
+        [(ngModel)]="query"
+        placeholder="Где Вы находитесь?"
         [matAutocomplete]="auto"
-        (ngModelChange)="updateAutocomplete()"
+        (ngModelChange)="updateAutocomplete(query)"
       />
-      <mat-autocomplete #auto (optionSelected)="search()">
-        <mat-option *ngFor="let item of autocomplete" [value]="item.name">
-          {{ item.country + ", " + item.region + ", " + item.name }}
-        </mat-option>
+
+      <mat-autocomplete #auto (optionSelected)="updateQuery($event.option.value)">
+        <ng-container>
+          <mat-option *ngFor="let locationItem of autocomplete" [value]="locationItem.name">
+            {{ locationItem | location }}
+          </mat-option>
+        </ng-container>
       </mat-autocomplete>
     </mat-form-field>
+
     <button mat-icon-button type="submit">
       <mat-icon> search </mat-icon>
     </button>
   </form>
 
-  <div class="weather__result" *ngIf="!isLoading">
-    <div class="weather__success" *ngIf="loadedWeather && !error">
+  <ng-template [ngSwitch]="model.state">
+    <div *ngSwitchCase="'READY'">output</div>
+  </ng-template>
+
+  <div class="weather__result" *ngIf="model.state !== 'PENDING'; else loading">
+    <div class="weather__success" *ngIf="model.state === 'READY' && model.forecast as weather">
       <div class="weather__current">
         <app-weather-card-current
-          [weatherData]="loadedWeather?.current"
-          [locationData]="loadedWeather?.location"
+          [weatherData]="weather.current"
+          [locationData]="weather.location"
         ></app-weather-card-current>
       </div>
 
       <div class="weather__forecast">
-        <div *ngFor="let day of loadedWeather?.forecast?.forecastday">
+        <div *ngFor="let day of weather.forecast.forecastday">
           <div class="weather__day">
             <h1>{{ day.date }}</h1>
 
             <app-weather-card
               [weatherData]="day"
-              [locationData]="loadedWeather?.location"
+              [locationData]="weather.location"
             ></app-weather-card>
           </div>
 
@@ -47,20 +56,20 @@
                 <img
                   mat-card-avatar
                   style="border-radius: 0"
-                  [src]="hour?.condition?.icon"
+                  [src]="hour.condition.icon"
                 />
                 <mat-card-title>
                   <span>
-                    {{ hour?.time!.split(" ")[1] }}
+                    {{ hour.time.split(" ")[1] }}
                   </span>
                 </mat-card-title>
                 <mat-card-subtitle>
-                  {{ hour?.condition?.text }}
+                  {{ hour.condition.text }}
                 </mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
-                <p style="font-size: 20px">{{ hour?.temp_c! | temp }}</p>
-                <p>Ощущается как {{ hour?.feelslike_c! | temp }}</p>
+                <p style="font-size: 20px">{{ hour.temp_c | temp }}</p>
+                <p>Ощущается как {{ hour.feelslike_c | temp }}</p>
               </mat-card-content>
             </mat-card>
           </div>
@@ -68,14 +77,16 @@
       </div>
     </div>
 
-    <div class="weather__error" *ngIf="error">
+    <div class="weather__error" *ngIf="model.state === 'ERROR' && model.error as error">
       <h1>
         {{ error }}
       </h1>
     </div>
   </div>
 
-  <div *ngIf="isLoading" class="weather__spinner">
-    <mat-spinner></mat-spinner>
-  </div>
+  <ng-template #loading>
+    <div class="weather__spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 </div>

@@ -1,35 +1,49 @@
 import { Injectable } from '@angular/core';
 import * as dayjs from 'dayjs';
+import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TimeService {
-  public clockRotation: number = 0;
+  public clockRotation$: BehaviorSubject<number> = new BehaviorSubject<number>(
+    0
+  );
+  public time$: Observable<string> = new Observable<string>(
+    (subscriber: Subscriber<string>) => {
+      setInterval(() => {
+        subscriber.next(dayjs().format(this.clockFormat));
+      });
+    }
+  );
 
-  constructor() {}
+  public clockFormat: string = 'HH:mm:ss';
 
-  getTime(): string {
-    return dayjs().format('HH:mm:ss');
+  public getTime$(format: string = this.clockFormat): Observable<string> {
+    return new Observable<string>((subscriber: Subscriber<string>) => {
+      setInterval(() => subscriber.next(dayjs().format(format)));
+    });
   }
 
-  getHello(): string {
+  public getHello(): string {
     const currentHours = dayjs().hour();
 
     if (6 < currentHours && currentHours < 12) {
       return 'Доброе утро!';
-    } else if (11 < currentHours && currentHours < 18) {
+    }
+
+    if (11 < currentHours && currentHours < 18) {
       return 'Добрый день!';
-    } else if (17 < currentHours && currentHours < 24) {
+    }
+
+    if (17 < currentHours && currentHours < 24) {
       return 'Добрый вечер!';
     }
 
     return 'Доброй ночи!';
   }
 
-  rotateClock() {
-    this.clockRotation += 90;
-
-    if (this.clockRotation == 360) this.clockRotation = 0;
+  public rotateClock(degrees: number): void {
+    this.clockRotation$.next((this.clockRotation$.value + degrees) % 360);
   }
 }

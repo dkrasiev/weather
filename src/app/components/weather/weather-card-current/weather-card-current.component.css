@@ -3,8 +3,6 @@
   align-items: center;
 }
 .row > * {
-  margin: 0;
-  padding: 0;
   margin-right: 4px;
 }
 
@@ -13,8 +11,6 @@
   align-items: baseline;
 }
 .row-baseline > * {
-  margin: 0;
-  padding: 0;
   margin-right: 4px;
 }
 

@@ -1,9 +1,8 @@
 <div class="time">
   <p
-    [ngStyle]="{ transform: 'rotate(' + timeService.clockRotation + 'deg)' }"
+    [ngStyle]="{ transform: 'rotate(' + (clockRotation$ | async) + 'deg)' }"
     class="mat-display-4"
-    style="margin: 0; padding: 0"
   >
-    {{ time }}
+    {{ time$ | async }}
   </p>
 </div>

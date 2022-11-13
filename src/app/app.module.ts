@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WeatherCardComponent } from './components/weather/weather-card/weather-card.component';
 import { WeatherCardCurrentComponent } from './components/weather/weather-card-current/weather-card-current.component';
 import { TempPipe } from './pipes/temp.pipe';
+import { LocationPipe } from './pipes/location.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TempPipe } from './pipes/temp.pipe';
     WeatherCardComponent,
     WeatherCardCurrentComponent,
     TempPipe,
+    LocationPipe,
   ],
   imports: [
     BrowserModule,

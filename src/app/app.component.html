@@ -2,15 +2,28 @@
   <a mat-icon-button *ngIf="router.url != '/'" routerLink="/">
     <mat-icon>arrow_back</mat-icon>
   </a>
+
   <span class="spacer"></span>
-  <span *ngIf="router.url != '/time'">
-    {{ time }}
+
+  <span *ngIf="router.url != '/time'; else time">
+    {{ time$ | async }}
   </span>
-  <span *ngIf="router.url == '/time'">
-    <button mat-button (click)="timeService.rotateClock()">
-      Повернуть часы
-    </button>
-  </span>
+
+  <ng-template #time>
+    <span>
+      <mat-form-field style="text-align: center" floatLabel="never">
+        <input
+          [(ngModel)]="timeService.clockFormat"
+          matInput
+          placeholder="Time format"
+        />
+      </mat-form-field>
+
+      <button mat-button (click)="timeService.rotateClock(90)">
+        Повернуть часы
+      </button>
+    </span>
+  </ng-template>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

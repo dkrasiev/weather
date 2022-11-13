@@ -34,7 +34,7 @@ export class WeatherService {
         },
       })
       .pipe(
-        tap((response) => {
+        tap((response: ForecastResponse) => {
           for (const day of response.forecast.forecastday) {
             const dayjsDate = dayjs(day.date).locale(ru);
 
@@ -50,12 +50,13 @@ export class WeatherService {
             day.date = day.date[0].toUpperCase() + day.date.slice(1); // сделать первую букву заглавной
           }
         }),
-        catchError((e) => {
-          let error = 'Неизвестная ошибка';
+        catchError((e: any) => {
+          const error = new Error();
+          error.message = 'Неизвестная ошибка'
 
           switch (e.status) {
             case 400:
-              error = 'Город не найден';
+              error.message = 'Город не найден';
           }
 
           throw error;
